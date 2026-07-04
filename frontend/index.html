@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autonomous Bug Fixing Agent</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- glow orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="wrapper">
+
+    <!-- ── TOP BAR ── -->
+    <div class="topbar">
+      <div class="topbar-logo">
+        <span class="dot"></span>
+        BugAgent v2.1
+      </div>
+      <div class="topbar-status">
+        STATUS: <span id="statusText">IDLE — READY</span>
+      </div>
+    </div>
+
+    <!-- ── HERO ── -->
+    <div class="hero">
+      <div class="hero-badge">
+        <span class="dot-sm"></span>
+        AI-Powered · Autonomous · Zero-Config
+      </div>
+      <h1 class="hero-title">
+        <span class="line1">Autonomous</span>
+        <span class="line2">Bug Fixing Agent</span>
+      </h1>
+      <p class="hero-sub">// upload → detect → fix → validate · powered by static analysis + LLM repair</p>
+    </div>
+
+    <!-- ── 3D MARQUEE ── -->
+    <div class="marquee-section">
+      <div class="marquee-track">
+        <div class="marquee-inner" id="mq1"></div>
+        <div class="marquee-inner marquee-inner2" id="mq2"></div>
+      </div>
+    </div>
+
+    <!-- ── PIPELINE ── -->
+    <div class="pipeline" id="pipeline">
+      <div class="step" id="step-0">
+        <div class="step-circle">📂</div>
+        <div class="step-label">Upload</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step" id="step-1">
+        <div class="step-circle">🔍</div>
+        <div class="step-label">Detect</div>
+      </div>
+      <div class="step-connector rev"></div>
+      <div class="step-connector"></div>
+      <div class="step" id="step-2">
+        <div class="step-circle">🛠</div>
+        <div class="step-label">Fix</div>
+      </div>
+      <div class="step-connector rev"></div>
+      <div class="step-connector"></div>
+      <div class="step" id="step-3">
+        <div class="step-circle">✅</div>
+        <div class="step-label">Validate</div>
+      </div>
+    </div>
+
+    <!-- ── UPLOAD CARD ── -->
+    <div class="upload-card" id="dropZone">
+      <div class="corner corner-tl"></div>
+      <div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div>
+      <div class="corner corner-br"></div>
+      <div class="upload-icon">🐍</div>
+      <div class="upload-title">Drop your Python file here</div>
+      <div class="upload-sub">// accepts .py files · max 200MB · AST + LLM analysis</div>
+      <button class="upload-btn" id="browseBtn">⌃ Browse Files</button>
+      <input type="file" id="fileInput" accept=".py" />
+    </div>
+
+    <!-- ── STATS ── -->
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-num">99.2%</div>
+        <div class="stat-label">Fix Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">&lt;2s</div>
+        <div class="stat-label">Avg Time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">47+</div>
+        <div class="stat-label">Bug Types</div>
+      </div>
+    </div>
+
+    <!-- ── FEATURES ── -->
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">AST Analysis</div>
+        <div class="feature-desc">Deep abstract syntax tree parsing to pinpoint exact error nodes in milliseconds.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <div class="feature-title">LLM Repair</div>
+        <div class="feature-desc">Claude-powered intelligent fixes with full context awareness and explanation.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔁</div>
+        <div class="feature-title">Auto Validate</div>
+        <div class="feature-desc">Runs tests and syntax checks post-fix to ensure correctness before delivery.</div>
+      </div>
+    </div>
+
+    <!-- ── RESULTS (hidden until fix completes) ── -->
+    <div id="resultsSection" class="results-section hidden">
+
+      <!-- terminal -->
+      <div class="terminal" id="terminal">
+        <div class="terminal-bar">
+          <div class="dot-r"></div>
+          <div class="dot-y"></div>
+          <div class="dot-g"></div>
+          <span class="terminal-title">bug-agent — output</span>
+        </div>
+        <div class="terminal-body" id="terminalBody"></div>
+      </div>
+
+      <!-- status banner -->
+      <div id="statusBanner" class="status-banner hidden"></div>
+
+      <!-- code diff -->
+      <div class="code-grid">
+        <div class="code-panel">
+          <div class="code-panel-header">
+            <span>📄 Original Code</span>
+            <span class="badge badge-src">SOURCE</span>
+          </div>
+          <pre id="originalCode"></pre>
+        </div>
+        <div class="code-panel">
+          <div class="code-panel-header">
+            <span>✅ Fixed Code</span>
+            <span class="badge badge-fix">PATCHED</span>
+          </div>
+          <pre id="fixedCode"></pre>
+        </div>
+      </div>
+
+      <!-- debug logs -->
+      <details class="debug-details">
+        <summary>📊 View Debug Logs</summary>
+        <div class="debug-body">
+          <div class="debug-label">// pylint issues</div>
+          <pre id="pylintLogs"></pre>
+          <div class="debug-label">// validation logs</div>
+          <pre id="validationLogs"></pre>
+        </div>
+      </details>
+
+      <!-- download -->
+      <button class="download-btn" id="downloadBtn">⬇ Download Fixed Code</button>
+
+    </div>
+
+  </div><!-- /wrapper -->
+
+  <script src="main.js"></script>
+</body>
+</html>

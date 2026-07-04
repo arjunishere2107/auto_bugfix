@@ -10,5 +10,11 @@
     "bug_snippet": "# sample_code/buggy.py\ndef add_numbers(a, b):\n    # bug: returns string instead of sum\n    return str(a + b)\n\ndef multiply(a, b):\n    return a * b\n",
     "fix_snippet": "def add_numbers(a, b):\n    return a + b\n\ndef multiply(a, b):\n    return a * b",
     "filename": "sample_code\\buggy.py"
+  },
+  {
+    "id": "19d457dc-4841-4857-a44f-e85e336871a4",
+    "bug_snippet": "# sample_code/buggy.py\ndef add_numbers(a, b):\n    # bug: returns string instead of sum\n    return str(a + b)\n\ndef multiply(a, b):\n    return a * b\n",
+    "fix_snippet": "def add_numbers(a, b):\n    return a + b\n\ndef multiply(a, b):\n    return a * b",
+    "filename": "sample_code\\buggy.py"
   }
 ]

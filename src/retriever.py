@@ -1,8 +1,8 @@
-# src/retriever.py
+
 import numpy as np
 from sentence_transformers import SentenceTransformer
 import faiss
-from storage import load_meta
+from src.storage import load_meta
 from pathlib import Path
 
 EMB_MODEL = "all-MiniLM-L6-v2"  # small, fast

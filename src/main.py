@@ -1,4 +1,4 @@
-# src/main.py
+
 from pathlib import Path
 import uuid
 

@@ -5,3 +5,13 @@ faiss-cpu
 sentence-transformers
 numpy
 python-dotenv
+flask
+flask-cors
+streamlit
+sentence-transformers
+transformers
+torch
+faiss-cpu
+openai
+groq
+anthropic

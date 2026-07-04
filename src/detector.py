@@ -1,4 +1,4 @@
-# src/detector.py
+
 import subprocess
 import json
 from typing import List
